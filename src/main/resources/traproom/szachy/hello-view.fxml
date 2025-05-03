@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="szachownica" alignment="CENTER" gridLinesVisible="true" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="traproom.szachy.HelloController">
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+        <ColumnConstraints percentWidth="12.5" />
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+        <RowConstraints percentHeight="12.5" />
+    </rowConstraints>
+
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane00" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane10" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane20" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane30" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane40" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane50" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane60" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="0">
+        <children>
+            <ImageView fx:id="pane70" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane01" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane11" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane21" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane31" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane41" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane51" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane61" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="1">
+        <children>
+            <ImageView fx:id="pane71" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane02" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane12" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane22" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane32" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane42" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane52" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane62" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="2">
+        <children>
+            <ImageView fx:id="pane72" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane03" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane13" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane23" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane33" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane43" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane53" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane63" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="3">
+
+        <children>
+            <ImageView fx:id="pane73" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="0" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane04" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane14" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane24" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane34" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane44" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane54" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane64" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="4">
+
+        <children>
+            <ImageView fx:id="pane74" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="5">
+        <children>
+            <ImageView fx:id="pane05" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane15" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane25" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane35" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane45" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane55" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane65" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="5">
+
+        <children>
+            <ImageView fx:id="pane75" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="0" GridPane.rowIndex="6">
+        <children>
+
+            <ImageView fx:id="pane06" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane16" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane26" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane36" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane46" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane56" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane66" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="6">
+        <children>
+            <ImageView fx:id="pane76" />
+        </children>
+    </Pane>
+
+
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane07" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane17" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane27" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane37" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane47" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane57" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane67" />
+        </children>
+    </Pane>
+    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="7">
+        <children>
+            <ImageView fx:id="pane77" />
+        </children>
+    </Pane>
+
+</GridPane>
