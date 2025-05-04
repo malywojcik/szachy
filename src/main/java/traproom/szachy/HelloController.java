@@ -152,6 +152,52 @@ public class HelloController
             }
     }
 
+    private void clearHighlights(Position oldPosition)
+    {
+        // Clear possible move highlights
+        if (mozliweRuchy != null)
+        {
+            for (Ruch ruch : mozliweRuchy)
+            {
+                int x = ruch.toX;
+                int y = ruch.toY;
+                Pane pane = szachownica.getChildren().get(y * 8 + x) instanceof Pane ? (Pane) szachownica.getChildren().get(y * 8 + x) : null;
+                if (pane != null)
+                {
+                    if ((x + y) % 2 == 0)
+                        pane.setStyle("-fx-background-color: white");
+                    else
+                        pane.setStyle("-fx-background-color: black");
+                }
+            }
+        }
+        // Clear rook and king highlights
+        Pane rookPane1 = szachownica.getChildren().get(oldPosition.y * 8 + 7) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 7) : null;
+        Pane rookPane2 = szachownica.getChildren().get(oldPosition.y * 8 + 0) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 0) : null;
+        Pane kingPane = szachownica.getChildren().get(oldPosition.y * 8 + 4) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 4) : null;
+        if (rookPane1 != null)
+        {
+            if ((7 + oldPosition.y) % 2 == 0)
+                rookPane1.setStyle("-fx-background-color: white");
+            else
+                rookPane1.setStyle("-fx-background-color: black");
+        }
+        if (rookPane2 != null)
+        {
+            if ((0 + oldPosition.y) % 2 == 0)
+                rookPane2.setStyle("-fx-background-color: white");
+            else
+                rookPane2.setStyle("-fx-background-color: black");
+        }
+        if (kingPane != null)
+        {
+            if ((4 + oldPosition.y) % 2 == 0)
+                kingPane.setStyle("-fx-background-color: white");
+            else
+                kingPane.setStyle("-fx-background-color: black");
+        }
+    }
+
     // Obsługa kliknięć na przyciski planszy
     private void addFigureClickHandler(ImageView imageView)
     {
@@ -162,7 +208,7 @@ public class HelloController
                 {
                     Position currPosition = positions.get(imageView);
                     Figury figura = gra.szachownica.pola[currPosition.x][currPosition.y].figura;
-                    if(figura.bialy != gra.aktualnyGracz.bialy)
+                    if(figura == null || figura.bialy != gra.aktualnyGracz.bialy)
                         return;
 
                     if(figura instanceof Pionek)
@@ -185,6 +231,7 @@ public class HelloController
                         selectedFigure = null;
                         return;
                     }
+                    //podświetlenie mozliwych ruchow
                     for (Ruch ruch : mozliweRuchy)
                     {
                         int x = ruch.toX;
@@ -197,6 +244,101 @@ public class HelloController
                             pane.setStyle("-fx-background-color: red");
                     }
 
+                    // Highlight rook for castling if king is selected
+                    if (wybranaFigura instanceof Krol && !((Krol)wybranaFigura).isMoved())
+                    {
+                        // Kingside castling
+                        if (gra.szachownica.wZakresie(7, currPosition.y))
+                        {
+                            Pole rookPole = gra.szachownica.pola[7][currPosition.y];
+                            if (rookPole.zajete() && rookPole.figura instanceof Wieza && !((Wieza)rookPole.figura).isMoved() && rookPole.figura.bialy == wybranaFigura.bialy)
+                            {
+                                boolean pathClear = true;
+                                for (int x = currPosition.x + 1; x < 7; x++)
+                                {
+                                    if (gra.szachownica.pola[x][currPosition.y].zajete())
+                                    {
+                                        pathClear = false;
+                                        break;
+                                    }
+                                }
+                                if (pathClear)
+                                {
+                                    Pane rookPane = szachownica.getChildren().get(currPosition.y * 8 + 7) instanceof Pane ? (Pane) szachownica.getChildren().get(currPosition.y * 8 + 7) : null;
+                                    rookPane.setStyle("-fx-background-color: orange");
+                                }
+                            }
+                        }
+
+                        // Queenside castling
+                        if (gra.szachownica.wZakresie(0, currPosition.y))
+                        {
+                            Pole rookPole = gra.szachownica.pola[0][currPosition.y];
+                            if (rookPole.zajete() && rookPole.figura instanceof Wieza && !((Wieza)rookPole.figura).isMoved() && rookPole.figura.bialy == wybranaFigura.bialy)
+                            {
+                                boolean pathClear = true;
+                                for (int x = currPosition.x - 1; x > 0; x--)
+                                {
+                                    if (gra.szachownica.pola[x][currPosition.y].zajete())
+                                    {
+                                        pathClear = false;
+                                        break;
+                                    }
+                                }
+                                if (pathClear && !gra.szachownica.pola[1][currPosition.y].zajete())
+                                {
+                                    Pane rookPane = szachownica.getChildren().get(currPosition.y * 8 + 0) instanceof Pane ? (Pane) szachownica.getChildren().get(currPosition.y * 8 + 0) : null;
+                                    rookPane.setStyle("-fx-background-color: orange");
+                                }
+                            }
+                        }
+                    }
+
+                    // Highlight king for castling if rook is selected
+                    if (wybranaFigura instanceof Wieza && !((Wieza)wybranaFigura).isMoved())
+                    {
+                        Pole kingPole = gra.szachownica.pola[4][currPosition.y];
+                        if (kingPole.zajete() && kingPole.figura instanceof Krol && !((Krol)kingPole.figura).isMoved() && kingPole.figura.bialy == wybranaFigura.bialy)
+                        {
+                            // Kingside castling (rook at h-file)
+                            if (currPosition.x == 7)
+                            {
+                                boolean pathClear = true;
+                                for (int x = 5; x < 7; x++)
+                                {
+                                    if (gra.szachownica.pola[x][currPosition.y].zajete())
+                                    {
+                                        pathClear = false;
+                                        break;
+                                    }
+                                }
+                                if (pathClear)
+                                {
+                                    Pane kingPane = szachownica.getChildren().get(currPosition.y * 8 + 4) instanceof Pane ? (Pane) szachownica.getChildren().get(currPosition.y * 8 + 4) : null;
+                                    kingPane.setStyle("-fx-background-color: orange");
+                                }
+                            }
+                            // Queenside castling (rook at a-file)
+                            else if (currPosition.x == 0)
+                            {
+                                boolean pathClear = true;
+                                for (int x = 1; x < 4; x++)
+                                {
+                                    if (gra.szachownica.pola[x][currPosition.y].zajete())
+                                    {
+                                        pathClear = false;
+                                        break;
+                                    }
+                                }
+                                if (pathClear && !gra.szachownica.pola[1][currPosition.y].zajete())
+                                {
+                                    Pane kingPane = szachownica.getChildren().get(currPosition.y * 8 + 4) instanceof Pane ? (Pane) szachownica.getChildren().get(currPosition.y * 8 + 4) : null;
+                                    kingPane.setStyle("-fx-background-color: orange");
+                                }
+                            }
+                        }
+                    }
+
                     selectedFigure.setStyle("-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);");
                 }
 
@@ -207,48 +349,172 @@ public class HelloController
 
                     if(newPosition == oldPosition) // odwybranie figury
                     {
-                        for (Ruch ruch : mozliweRuchy) // usuniecie pokazania mozliwych ruchow
-                        {
-                            int x = ruch.toX;
-                            int y = ruch.toY;
-
-                            Pane pane = szachownica.getChildren().get(y * 8 + x) instanceof Pane ? (Pane) szachownica.getChildren().get(y * 8 + x) : null;
-                            if ((x + y) % 2 == 0)
-                                pane.setStyle("-fx-background-color: white");
-                            else
-                                pane.setStyle("-fx-background-color: black");
-                        }
+                        clearHighlights(oldPosition);
                         selectedFigure.setStyle(""); // Czyścimy zaznaczenie
                         selectedFigure = null;
+                        mozliweRuchy = null;
                         return;
                     }
 
-                    boolean czerks = false;
-                    for (Ruch ruch : mozliweRuchy)
+                    Figury selectedFigura = gra.szachownica.pola[oldPosition.x][oldPosition.y].figura;
+                    Figury targetFigura = gra.szachownica.pola[newPosition.x][newPosition.y].figura;
+
+                    // Handle castling (king selecting rook or rook selecting king)
+                    boolean isCastlingMove = false;
+                    if (selectedFigura instanceof Krol && targetFigura instanceof Wieza && targetFigura.bialy == selectedFigura.bialy && !((Krol)selectedFigura).isMoved() && !((Wieza)targetFigura).isMoved())
                     {
-                        if ((newPosition.x == ruch.toX) && (newPosition.y == ruch.toY)) // jesli wybrane pole z puli mozliwego ruchu wszystko ok
-                            czerks = true;
+                        // Kingside castling
+                        if (newPosition.x == 7 && newPosition.y == oldPosition.y)
+                        {
+                            boolean pathClear = true;
+                            for (int x = oldPosition.x + 1; x < 7; x++)
+                            {
+                                if (gra.szachownica.pola[x][oldPosition.y].zajete())
+                                {
+                                    pathClear = false;
+                                    break;
+                                }
+                            }
+                            if (pathClear)
+                            {
+                                selectedFigura.ruch(oldPosition.x + 2, oldPosition.y); // King to g1/g8
+                                isCastlingMove = true;
+                                // Update UI
+                                Pane kingNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 6) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 6) : null;
+                                Pane rookNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 5) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 5) : null;
+                                if (kingNewPane != null && rookNewPane != null)
+                                {
+                                    ImageView kingNewImage = (ImageView) kingNewPane.getChildren().getFirst();
+                                    ImageView rookNewImage = (ImageView) rookNewPane.getChildren().getFirst();
+                                    kingNewImage.setImage(selectedFigure.getImage());
+                                    rookNewImage.setImage(imageView.getImage());
+                                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    imageView.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    clearHighlights(oldPosition);
+                                }
+                            }
+                        }
+                        // Queenside castling
+                        else if (newPosition.x == 0 && newPosition.y == oldPosition.y)
+                        {
+                            boolean pathClear = true;
+                            for (int x = oldPosition.x - 1; x > 0; x--)
+                            {
+                                if (gra.szachownica.pola[x][oldPosition.y].zajete())
+                                {
+                                    pathClear = false;
+                                    break;
+                                }
+                            }
+                            if (pathClear && !gra.szachownica.pola[1][oldPosition.y].zajete())
+                            {
+                                selectedFigura.ruch(oldPosition.x - 2, oldPosition.y); // King to c1/c8
+                                isCastlingMove = true;
+                                // Update UI
+                                Pane kingNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 2) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 2) : null;
+                                Pane rookNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 3) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 3) : null;
+                                if (kingNewPane != null && rookNewPane != null)
+                                {
+                                    ImageView kingNewImage = (ImageView) kingNewPane.getChildren().getFirst();
+                                    ImageView rookNewImage = (ImageView) rookNewPane.getChildren().getFirst();
+                                    kingNewImage.setImage(selectedFigure.getImage());
+                                    rookNewImage.setImage(imageView.getImage());
+                                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    imageView.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    clearHighlights(oldPosition);
+                                }
+                            }
+                        }
                     }
-                    if(!czerks)  //wybranie zlego pola
-                        return;
+                    else if (selectedFigura instanceof Wieza && targetFigura instanceof Krol && targetFigura.bialy == selectedFigura.bialy && !((Wieza)selectedFigura).isMoved() && !((Krol)targetFigura).isMoved())
+                    {
+                        // Kingside castling
+                        if (oldPosition.x == 7 && newPosition.x == 4 && newPosition.y == oldPosition.y)
+                        {
+                            boolean pathClear = true;
+                            for (int x = 5; x < 7; x++)
+                            {
+                                if (gra.szachownica.pola[x][oldPosition.y].zajete())
+                                {
+                                    pathClear = false;
+                                    break;
+                                }
+                            }
+                            if (pathClear)
+                            {
+                                selectedFigura.ruch(5, oldPosition.y); // Rook to f1/f8
+                                isCastlingMove = true;
+                                // Update UI
+                                Pane kingNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 6) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 6) : null;
+                                Pane rookNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 5) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 5) : null;
+                                if (kingNewPane != null && rookNewPane != null)
+                                {
+                                    ImageView kingNewImage = (ImageView) kingNewPane.getChildren().getFirst();
+                                    ImageView rookNewImage = (ImageView) rookNewPane.getChildren().getFirst();
+                                    kingNewImage.setImage(imageView.getImage());
+                                    rookNewImage.setImage(selectedFigure.getImage());
+                                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    imageView.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    clearHighlights(oldPosition);
+                                }
+                            }
+                        }
+                        // Queenside castling
+                        else if (oldPosition.x == 0 && newPosition.x == 4 && newPosition.y == oldPosition.y)
+                        {
+                            boolean pathClear = true;
+                            for (int x = 1; x < 4; x++)
+                            {
+                                if (gra.szachownica.pola[x][oldPosition.y].zajete())
+                                {
+                                    pathClear = false;
+                                    break;
+                                }
+                            }
+                            if (pathClear && !gra.szachownica.pola[1][oldPosition.y].zajete())
+                            {
+                                selectedFigura.ruch(3, oldPosition.y); // Rook to d1/d8
+                                isCastlingMove = true;
+                                // Update UI
+                                Pane kingNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 2) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 2) : null;
+                                Pane rookNewPane = szachownica.getChildren().get(oldPosition.y * 8 + 3) instanceof Pane ? (Pane) szachownica.getChildren().get(oldPosition.y * 8 + 3) : null;
+                                if (kingNewPane != null && rookNewPane != null)
+                                {
+                                    ImageView kingNewImage = (ImageView) kingNewPane.getChildren().getFirst();
+                                    ImageView rookNewImage = (ImageView) rookNewPane.getChildren().getFirst();
+                                    kingNewImage.setImage(imageView.getImage());
+                                    rookNewImage.setImage(selectedFigure.getImage());
+                                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    imageView.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
+                                    clearHighlights(oldPosition);
+                                }
+                            }
+                        }
+                    }
 
-                    gra.szachownica.pola[oldPosition.x][oldPosition.y].figura.ruch(newPosition.x, newPosition.y);
-                    imageView.setImage(selectedFigure.getImage());
-                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png"))); // "Usuwamy" figurę ze starego pola
+                    if(!isCastlingMove)
+                    {
+                        boolean czerks = false;
+                        for (Ruch ruch : mozliweRuchy)
+                        {
+                            if ((newPosition.x == ruch.toX) && (newPosition.y == ruch.toY)) // jesli wybrane pole z puli mozliwego ruchu wszystko ok
+                            {
+                                czerks = true;
+                                break;
+                            }
+                        }
+                        if (!czerks)  //wybranie zlego pola
+                            return;
+
+                        gra.szachownica.pola[oldPosition.x][oldPosition.y].figura.ruch(newPosition.x, newPosition.y);
+                        imageView.setImage(selectedFigure.getImage());
+                        clearHighlights(oldPosition);
+                        selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png"))); // "Usuwamy" figurę ze starego pola
+                    }
+
                     selectedFigure.setStyle(""); // Czyścimy zaznaczenie
                     selectedFigure = null;
-
-                    for (Ruch ruch : mozliweRuchy) // czyszczenie pokazu mozliwych ruchow po przemieszczeniu
-                    {
-                        int x = ruch.toX;
-                        int y = ruch.toY;
-
-                        Pane pane = szachownica.getChildren().get(y * 8 + x) instanceof Pane ? (Pane) szachownica.getChildren().get(y * 8 + x) : null;
-                        if ((x + y) % 2 == 0)
-                            pane.setStyle("-fx-background-color: white");
-                        else
-                            pane.setStyle("-fx-background-color: black");
-                    }
+                    mozliweRuchy = null;
 
                     gra.zmienGracza();
                 }
