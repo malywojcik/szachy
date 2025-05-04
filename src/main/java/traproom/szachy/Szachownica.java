@@ -1,7 +1,5 @@
 package traproom.szachy;
 
-import java.util.List;
-
 public class Szachownica
 {
     public Pole[][] pola = new Pole[8][8];

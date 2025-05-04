@@ -7,9 +7,7 @@ public class Goniec extends Figury // ten co bokiem lata
 {
     public Goniec(int x, int y, Szachownica szachownica, boolean bialy)
     {
-        super(x, y, bialy, true);
-        this.szachownica = szachownica;
-        szachownica.pola[x][y].figura = this;
+        super(x, y, szachownica, bialy);
     }
 
     @Override

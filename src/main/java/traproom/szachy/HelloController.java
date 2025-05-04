@@ -108,7 +108,6 @@ public class HelloController
 
             }
 
-
         pane47.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/white_king.png")));
         pane37.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/white_queen.png")));
         pane07.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/white_rook.png")));
@@ -180,7 +179,6 @@ public class HelloController
                         wybranaFigura = (Krol) figura;
 
                     selectedFigure = imageView;
-                    wybranaFigura.mozliwe_pozycje(gra.szachownica);
                     mozliweRuchy = wybranaFigura.mozliwe_pozycje(gra.szachownica);
                     if(mozliweRuchy.isEmpty()) // brak mozliwosci wybania figury ktora nie moze sie ruszyc
                     {
@@ -251,7 +249,7 @@ public class HelloController
                         else
                             pane.setStyle("-fx-background-color: black");
                     }
-                    //zmiana gracza
+
                     gra.zmienGracza();
                 }
         });
