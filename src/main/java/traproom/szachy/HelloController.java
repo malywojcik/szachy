@@ -1,7 +1,9 @@
 package traproom.szachy;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -506,10 +508,25 @@ public class HelloController
                         if (!czerks)  //wybranie zlego pola
                             return;
 
+                        boolean szach = false;
+                        if(targetFigura instanceof Krol)
+                            szach = true;
+
                         gra.szachownica.pola[oldPosition.x][oldPosition.y].figura.ruch(newPosition.x, newPosition.y);
                         imageView.setImage(selectedFigure.getImage());
                         clearHighlights(oldPosition);
                         selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png"))); // "Usuwamy" figurę ze starego pola
+
+                        if (szach)
+                        {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Szach mat!");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Gra zakończona! " + (gra.aktualnyGracz.bialy ? "Białe" : "Czarne") + " wygrały!");
+                            alert.showAndWait();
+                            Platform.exit(); // Zakończ aplikację
+                            return;
+                        }
                     }
 
                     selectedFigure.setStyle(""); // Czyścimy zaznaczenie
