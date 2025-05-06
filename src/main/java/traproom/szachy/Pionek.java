@@ -3,7 +3,7 @@ package traproom.szachy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pionek extends Figury
+public class Pionek extends Figury // npc
 {
     public Pionek(int x, int y, Szachownica szachownica, boolean bialy)
     {
@@ -23,7 +23,7 @@ public class Pionek extends Figury
         {
             mozliweRuchy.add(new Ruch(wspX, wspY, wspX, nextY));
 
-            //jesli pionek jest na swoim poczatku, moze ruszyc sie o 2 pola
+            // jeśli pionek jest na swoim początku, może ruszyć sie o 2 pola
             if((bialy && wspY == 6) || (!bialy && wspY == 1))
             {
                 int doubleY = wspY + 2 * kierunek;
@@ -32,7 +32,7 @@ public class Pionek extends Figury
             }
         }
 
-        //bicie po skos
+        // bicie
         for(int dx : new int[]{-1, 1})
         {
             int nextX = wspX + dx;

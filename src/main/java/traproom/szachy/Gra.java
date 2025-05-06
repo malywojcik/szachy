@@ -2,17 +2,19 @@ package traproom.szachy;
 
 public class Gra
 {
-    public Szachownica szachownica;
-    public Gracz gracz1, gracz2;
+    public final Szachownica szachownica;
+    private final Gracz gracz1, gracz2;
     public Gracz aktualnyGracz;
 
     public Gra()
     {
+        // Inicjalizacja szachownicy i graczy
         szachownica = new Szachownica();
         gracz1 = new Gracz(true);
         gracz2 = new Gracz(false);
         aktualnyGracz = gracz1;
 
+        // inicjalizacja czarnych figur
         szachownica.pola[0][0].figura = new Wieza(0, 0, szachownica, false);
         szachownica.pola[1][0].figura = new Skoczek(1, 0, szachownica, false);
         szachownica.pola[2][0].figura = new Goniec(2, 0, szachownica, false);
@@ -25,6 +27,7 @@ public class Gra
         for (int i = 0; i < 8; i++)
             szachownica.pola[i][1].figura = new Pionek(i, 1, szachownica, false);
 
+        // inicjalizacja białych figur
         szachownica.pola[0][7].figura = new Wieza(0, 7, szachownica, true);
         szachownica.pola[1][7].figura = new Skoczek(1, 7, szachownica, true);
         szachownica.pola[2][7].figura = new Goniec(2, 7, szachownica, true);

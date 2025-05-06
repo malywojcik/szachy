@@ -3,7 +3,7 @@ package traproom.szachy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wieza extends Figury
+public class Wieza extends Figury // t-pose
 {
     private boolean ruszony = false;
 
@@ -48,55 +48,16 @@ public class Wieza extends Figury
             }
         }
 
-        // Castling moves (rook initiating)
-        if (!ruszony)
-        {
-            // Check for king on the same rank
-            Pole kingPole = szachownica.pola[4][wspY];
-            if (kingPole.zajete() && kingPole.figura instanceof Krol && !((Krol)kingPole.figura).isMoved() && kingPole.figura.bialy == bialy)
-            {
-                // Kingside castling (rook at h-file)
-                if (wspX == 7)
-                {
-                    boolean pathClear = true;
-                    for (int x = 5; x < 7; x++)
-                        if (szachownica.pola[x][wspY].zajete())
-                        {
-                            pathClear = false;
-                            break;
-                        }
-
-                    if (pathClear)
-                        mozliweRuchy.add(new Ruch(wspX, wspY, 5, wspY)); // Rook moves to f1 or f8
-                }
-                // Queenside castling (rook at a-file)
-                else if (wspX == 0)
-                {
-                    boolean pathClear = true;
-                    for (int x = 1; x < 4; x++)
-                        if (szachownica.pola[x][wspY].zajete())
-                        {
-                            pathClear = false;
-                            break;
-                        }
-
-                    if (pathClear && !szachownica.pola[1][wspY].zajete())
-                        mozliweRuchy.add(new Ruch(wspX, wspY, 3, wspY)); // Rook moves to d1 or d8
-                }
-            }
-        }
-
         return mozliweRuchy;
     }
 
     @Override
     public void ruch(int nowyX, int nowyY)
     {
-        // Handle castling (rook initiating)
+        // roszada
         if (!ruszony && Math.abs(nowyX - wspX) >= 2) // Castling move
         {
             Krol king = (Krol) szachownica.pola[4][wspY].figura;
-            // Kingside castling
             if (wspX == 7 && nowyX == 5)
             {
                 szachownica.pola[4][wspY].figura = null;
@@ -104,7 +65,7 @@ public class Wieza extends Figury
                 king.wspX = 6;
                 king.setMoved(true);
             }
-            // Queenside castling
+
             else if (wspX == 0 && nowyX == 3)
             {
                 szachownica.pola[4][wspY].figura = null;
@@ -128,6 +89,6 @@ public class Wieza extends Figury
 
     public void setMoved(boolean ruszony)
     {
-        this.ruszony = this.ruszony;
+        this.ruszony = ruszony;
     }
 }

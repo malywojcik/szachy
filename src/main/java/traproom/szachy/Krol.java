@@ -50,10 +50,9 @@ public class Krol extends Figury
     @Override
     public void ruch(int nowyX, int nowyY)
     {
-        // Handle castling
+        // roszada
         if (!ruszony && Math.abs(nowyX - wspX) == 2) // Castling move
         {
-            // Kingside castling
             if (nowyX > wspX)
             {
                 Wieza rook = (Wieza) szachownica.pola[7][wspY].figura;
@@ -62,7 +61,6 @@ public class Krol extends Figury
                 rook.wspX = 5;
                 rook.setMoved(true);
             }
-            // Queenside castling
             else
             {
                 Wieza rook = (Wieza) szachownica.pola[0][wspY].figura;

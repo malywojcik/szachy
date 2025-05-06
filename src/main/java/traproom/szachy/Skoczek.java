@@ -3,7 +3,7 @@ package traproom.szachy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Skoczek extends Figury //kon
+public class Skoczek extends Figury // koń
 {
     public Skoczek(int x, int y, Szachownica szachownica, boolean bialy)
     {
@@ -15,8 +15,14 @@ public class Skoczek extends Figury //kon
     {
         List<Ruch> mozliweRuchy = new ArrayList<>();
         int[][] ruchy = {
-            {1, 2}, {2, 1}, {2, -1}, {1, -2},
-            {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}
+            {1, 2},
+            {2, 1},
+            {2, -1},
+            {1, -2},
+            {-1, -2},
+            {-2, -1},
+            {-2, 1},
+            {-1, 2}
         };
 
         for (int[] r : ruchy)

@@ -11,6 +11,7 @@ public class Szachownica
                 pola[i][j] = new Pole();
     }
 
+    // Metoda sprawdzająca, czy współrzędne są w zakresie szachownicy
     public boolean wZakresie(int x, int y)
     {
         return x >= 0 && x < 8 && y >= 0 && y < 8;

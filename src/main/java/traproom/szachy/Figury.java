@@ -4,9 +4,9 @@ import java.util.List;
 
 public abstract class Figury
 {
-    public int wspX, wspY;
-    public boolean bialy; // 0 - czarny ; 1 - biały
-    public Szachownica szachownica;
+    protected int wspX, wspY;
+    protected final boolean bialy;
+    protected Szachownica szachownica;
 
     public Figury(int wspX, int wspY, Szachownica szachownica, boolean bialy)
     {

@@ -16,7 +16,10 @@ public class Goniec extends Figury // ten co bokiem lata
         List<Ruch> mozliweRuchy = new ArrayList<>();
 
         int[][] kierunki = {
-                {-1, -1}, {1, -1}, {1, 1}, {-1, 1}
+                {-1, -1},
+                {1, -1},
+                {1, 1},
+                {-1, 1}
         };
 
         for (int[] kier : kierunki)
