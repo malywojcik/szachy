@@ -55,7 +55,7 @@ public class Wieza extends Figury // t-pose
     public void ruch(int nowyX, int nowyY)
     {
         // roszada
-        if (!ruszony && Math.abs(nowyX - wspX) >= 2) // Castling move
+        if (!ruszony && Math.abs(nowyX - wspX) >= 2)
         {
             Krol king = (Krol) szachownica.pola[4][wspY].figura;
             if (wspX == 7 && nowyX == 5)

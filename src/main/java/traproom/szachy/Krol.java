@@ -51,7 +51,7 @@ public class Krol extends Figury
     public void ruch(int nowyX, int nowyY)
     {
         // roszada
-        if (!ruszony && Math.abs(nowyX - wspX) == 2) // Castling move
+        if (!ruszony && Math.abs(nowyX - wspX) == 2)
         {
             if (nowyX > wspX)
             {

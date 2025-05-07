@@ -491,7 +491,7 @@ public class HelloController
                     gra.szachownica.pola[oldPosition.x][oldPosition.y].figura.ruch(newPosition.x, newPosition.y);
                     imageView.setImage(selectedFigure.getImage());
                     czysc(oldPosition);
-                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png"))); // "Usuwamy" figurę ze starego pola
+                    selectedFigure.setImage(new Image(getClass().getResourceAsStream("/traproom/szachy/images/blank.png")));
 
                     if (szach)
                     {
